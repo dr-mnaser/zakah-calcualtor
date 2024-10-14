@@ -8,18 +8,21 @@ import os
 from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
+import json
 
 # Load the environment variables
 #load_dotenv(".env")
 # Path to your Firebase service account key JSON file
 #FIREBASE_CREDENTIALS_PATH = os.getenv("FIREBASE_CREDENTIALS_PATH")
 
-FIREBASE_CREDENTIALS_PATH = st.secrets["FIREBASE_CREDENTIALS_PATH"]
+firebase_credentials = st.secrets["FIREBASE_CREDENTIALS"]
+# If you need the JSON format
+firebase_credentials_json = json.loads(json.dumps(firebase_credentials))
 
 # Check if the default app has already been initialized
 if not firebase_admin._apps:
     # Initialize Firebase app
-    cred = credentials.Certificate(FIREBASE_CREDENTIALS_PATH)
+    cred = credentials.Certificate(firebase_credentials_json)
     firebase_admin.initialize_app(cred)
 
 # Initialize Firestore client
