@@ -5,7 +5,8 @@ python-dotenv==1.0.1
 streamlit==1.20.0
 streamlit_authenticator==0.2.1
 streamlit_option_menu==0.3.2
-numpy==1.21.0 --only-binary :all:
+numpy==1.21.0
+--only-binary=numpy
 protobuf==3.20.0
 setuptools==65.5.0
 
