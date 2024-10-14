@@ -126,6 +126,8 @@ celerybeat.pid
 
 upload_to_database.py
 
+.streamlit/secrets.toml
+
 # Environments
 .env
 .venv
