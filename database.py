@@ -9,22 +9,34 @@ from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
 import json
+import streamlit as st
 
-# Load the environment variables
-load_dotenv(".env")
-# Path to your Firebase service account key JSON file
-FIREBASE_CREDENTIALS_PATH = os.getenv("FIREBASE_CREDENTIALS_PATH")
+# # Ucomment this if used locally#################################
+# # Load the environment variables
+# load_dotenv(".env")
+# # Path to your Firebase service account key JSON file
+# FIREBASE_CREDENTIALS_PATH = os.getenv("FIREBASE_CREDENTIALS_PATH")
+# # Check if the default app has already been initialized
+# if not firebase_admin._apps:
+#     # Initialize Firebase app
+#     #cred = credentials.Certificate(firebase_credentials_json)
+#     cred = credentials.Certificate(FIREBASE_CREDENTIALS_PATH)
+#     firebase_admin.initialize_app(cred)
+################################################################
 
-#firebase_credentials = st.secrets["FIREBASE_CREDENTIALS"]
-# If you need the JSON format
-#firebase_credentials_json = json.loads(json.dumps(firebase_credentials))
+# Use the following when deploy to streamlit####################
+# Load Firebase credentials from Streamlit secrets
+firebase_credentials_json = st.secrets["firebase"]["FIREBASE_CREDENTIALS"]
 
-# Check if the default app has already been initialized
+# Parse the credentials
+firebase_credentials = json.loads(firebase_credentials_json)
+
+# Initialize Firebase
+cred = credentials.Certificate(firebase_credentials)
 if not firebase_admin._apps:
-    # Initialize Firebase app
-    #cred = credentials.Certificate(firebase_credentials_json)
-    cred = credentials.Certificate(FIREBASE_CREDENTIALS_PATH)
     firebase_admin.initialize_app(cred)
+##############################################################
+
 
 # Initialize Firestore client
 db = firestore.client()
