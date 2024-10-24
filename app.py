@@ -270,7 +270,7 @@ if 'name' not in st.session_state:
 if 'authentication_status' not in st.session_state:
     st.session_state['authentication_status'] = authentication_status
     
-if 'username' not in st.session_state['username']:
+if 'username' not in st.session_state:
     st.session_state['username'] = username
 
 if authentication_status == False:
@@ -280,7 +280,9 @@ if authentication_status == None:
     st.warning("Please enter your username and password")
 
 if authentication_status:
-    #placeholder.empty()
-    authenticator.logout("Logout", "main")
+    try:
+        authenticator.logout("Logout", "main")
+    except KeyError as e:
+        st.warning(f"Logout failed: {str(e)}. Cookie key might be missing.")
     
     main()
