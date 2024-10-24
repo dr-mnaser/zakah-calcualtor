@@ -260,9 +260,11 @@ credentials = {"usernames": {}}
 for i in range(len(usernames)):
     credentials["usernames"][usernames[i]] = {"name": names[i], "password": hashed_passwords[i]}
 
-authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=1)
+# authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=1)
+# name, authentication_status, username = authenticator.login("Login", "main")
 
-name, authentication_status, username = authenticator.login("Login", "main")
+authenticator = stauth.Authenticate(credentials, "app_home", "auth", 0)
+name, authentication_status, username = authenticator.login("Login")
 
 if 'name' not in st.session_state:
     st.session_state['name'] = name
@@ -281,7 +283,8 @@ if authentication_status == None:
 
 if authentication_status:
     try:
-        authenticator.logout("Logout", "main")
+        #authenticator.logout("Logout", "main")
+        authenticator.logout("Logout")
     except KeyError as e:
         st.warning(f"Logout failed: {str(e)}. Cookie key might be missing.")
     
