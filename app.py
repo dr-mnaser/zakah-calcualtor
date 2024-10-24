@@ -282,10 +282,10 @@ if authentication_status == None:
     st.warning("Please enter your username and password")
 
 if authentication_status:
-    try:
-        #authenticator.logout("Logout", "main")
-        authenticator.logout("Logout")
-    except KeyError as e:
-        st.warning(f"Logout failed: {str(e)}. Cookie key might be missing.")
+    # try:
+    #     #authenticator.logout("Logout", "main")
+    #     authenticator.logout("Logout")
+    # except KeyError as e:
+    #     st.warning(f"Logout failed: {str(e)}. Cookie key might be missing.")
     
     main()
