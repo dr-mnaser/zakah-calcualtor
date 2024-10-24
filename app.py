@@ -76,9 +76,13 @@ def main():
         currency = "EGP"
         # --------------------------------------
         # --- NAVIGATION MENU ---
-        selected = option_menu(
-            menu_title=None,
-            options=["Add", "Delete", "Visualization"],
+        # selected = option_menu(
+        #     menu_title=None,
+        #     options=["Add", "Delete", "Visualization"],
+        #     icons=["pencil-fill", "trash-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
+        #     orientation="horizontal", default_index=2,
+        # )
+        selected = option_menu(None, ["Add", "Delete", "Visualization"],
             icons=["pencil-fill", "trash-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
             orientation="horizontal", default_index=2,
         )
