@@ -260,7 +260,7 @@ credentials = {"usernames": {}}
 for i in range(len(usernames)):
     credentials["usernames"][usernames[i]] = {"name": names[i], "password": hashed_passwords[i]}
 
-authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=0)
+authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=1)
 
 name, authentication_status, username = authenticator.login("Login", "main")
 
