@@ -264,11 +264,11 @@ credentials = {"usernames": {}}
 for i in range(len(usernames)):
     credentials["usernames"][usernames[i]] = {"name": names[i], "password": hashed_passwords[i]}
 
-# authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=1)
-# name, authentication_status, username = authenticator.login("Login", "main")
+authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=0)
+name, authentication_status, username = authenticator.login("Login", "main")
 
-authenticator = stauth.Authenticate(credentials, "app_home", "auth", 0)
-name, authentication_status, username = authenticator.login("Login")
+# authenticator = stauth.Authenticate(credentials, "app_home", "auth", 0)
+# name, authentication_status, username = authenticator.login("Login")
 
 if 'name' not in st.session_state:
     st.session_state['name'] = name
@@ -286,6 +286,7 @@ if authentication_status == None:
     st.warning("Please enter your username and password")
 
 if authentication_status:
+    authenticator.logout("Logout", "main")
     # try:
     #     #authenticator.logout("Logout", "main")
     #     authenticator.logout("Logout")
@@ -293,3 +294,13 @@ if authentication_status:
     #     st.warning(f"Logout failed: {str(e)}. Cookie key might be missing.")
     
     main()
+
+    # --- HIDE STREAMLIT STYLE ---
+    hide_st_style = """
+                <style>
+                #MainMenu {visibility: hidden;}
+                footer {visibility: hidden;}
+                header {visibility: hidden;}
+                </style>
+                """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
