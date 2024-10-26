@@ -293,7 +293,7 @@ if authentication_status == None:
     st.warning("Please enter your username and password")
 
 if authentication_status:
-    #authenticator.logout("Logout", "main")
+    authenticator.logout("Logout", "main")
     # try:
     #     #authenticator.logout("Logout", "main")
     #     authenticator.logout("Logout")
