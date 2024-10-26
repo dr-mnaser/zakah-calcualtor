@@ -82,10 +82,19 @@ def main():
         #     icons=["pencil-fill", "trash-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
         #     orientation="horizontal", default_index=2,
         # )
-        selected = option_menu(None, ["Add", "Delete", "Visualization"],
-            icons=["pencil-fill", "trash-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
-            orientation="horizontal", default_index=2,
-        )
+        selected = option_menu(
+                menu_title=None,
+                options=["Add", "Delete", "Visualization"],
+                icons=["pencil-fill", "trash-fill", "bar-chart-fill"],
+                orientation="horizontal",
+                default_index=2,
+                styles={
+                    "container": {"padding": "0!important", "background-color": "#fafafa"},
+                    "icon": {"color": "blue", "font-size": "25px"},
+                    "nav-link": {"font-size": "16px", "text-align": "center", "margin": "0px", "--hover-color": "#eee"},
+                    "nav-link-selected": {"background-color": "#6c757d"},
+                }
+                )
         
         #fetch_all_periods()
         
