@@ -164,7 +164,8 @@ def main():
                     
         # --- PLOT PERIODS ---
         if selected == "Visualization":
-            st.header("Data Visualization")
+            #st.header("Zakah Data")
+            st.markdown("<h3 style='text-align: center; font-weight: bold;'>Zakah Data</h3>", unsafe_allow_html=True)
             with st.form("saved_periods"):
                 col1, col2 = st.columns(2)
                 with col1:
@@ -222,7 +223,7 @@ def main():
                         df['Value'] = pd.to_numeric(df['Value'], errors='coerce').fillna(0)
                         
                         #col4, col5, col6, col7 = st.columns(4)
-                        col4, col6, col7 = st.columns(3)
+                        col3, col4, col6, col7 = st.columns(4)
                         total_income = 0
                         total_expense = 0
                         remaining_budget = 0
@@ -244,9 +245,10 @@ def main():
                         remaining_budget = zakah - total_expense
                         
                         # Display the metrics
-                        col4.metric("Zakah Total", f"${zakah}")
+                        col3.metric("Income", f"${total_income}")
+                        col4.metric("Zakah", f"${zakah}")
                         col6.metric("Paid", f"${total_expense}")
-                        col7.metric("Remaining Zakah", f"${remaining_budget}")
+                        col7.metric("Balance", f"${remaining_budget}")
                         
                         st.write(df)
                     else:
